@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - Sneha Flask App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Greeting message -->
+    <h1>{{ greeting }}! Welcome to my Flask app!</h1>
+
+    <!-- Link to about page -->
+    <p>
+        <a href="{{ url_for('about') }}">About this_
