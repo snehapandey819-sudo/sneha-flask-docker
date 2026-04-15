@@ -28,6 +28,20 @@ def about():
 # run the app
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
+@app.route('/')
+def home():
+    return "Hello World"
 
 
+# existing code (already there)
+
+@app.route('/')
+def home():
+    return "Hello World"
+
+
+# 👉 YOU ADD THIS BELOW EVERYTHING
+@app.route('/hello')
+def hello():
+    return "Hello from Nandini!"
 
