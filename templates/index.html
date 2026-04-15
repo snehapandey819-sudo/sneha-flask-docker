@@ -2,13 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home - Sneha Flask App</title>
+    <title>Feedback App</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
-    <!-- Greeting message -->
-    <h1>{{ greeting }}! Welcome to my Flask app!</h1>
 
-    <!-- Link to about page -->
-    <p>
-        <a href="{{ url_for('about') }}">About this_
+<body>
+
+<div class="card">
+    <h1>💬 Feedback Form</h1>
+    <p>We value your feedback</p>
+
+    <form action="/submit" method="get">
+        <input type="text" name="name" placeholder="Your Name" required>
+
+        <textarea name="message" placeholder="Your Message" required></textarea>
+
+        <button type="submit">Submit 🚀</button>
+    </form>
+</div>
+
+</body>
+</html>
