@@ -3,29 +3,27 @@ from supabase import create_client
 import os
 from dotenv import load_dotenv
 
-# Load .env file
 load_dotenv()
 
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 
-# Create Supabase client
+if not SUPABASE_URL or not SUPABASE_KEY:
+    raise Exception("Missing Supabase ENV variables")
+
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 app = Flask(__name__)
 
-# Home page
 @app.route('/')
 def home():
     return render_template("index.html")
 
-# Submit form
-@app.route('/submit')
+@app.route('/submit', methods=['POST'])
 def submit():
-    name = request.args.get('name')
-    message = request.args.get('message')
+    name = request.form.get('name')
+    message = request.form.get('message')
 
-    # Insert into Supabase
     supabase.table("feedback").insert({
         "name": name,
         "message": message
@@ -40,6 +38,3 @@ def submit():
         <a href="/">Go Back</a>
     </p>
     """
-
-def handler(request, context):
-    return app
