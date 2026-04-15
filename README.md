@@ -29,7 +29,7 @@ We implemented a CI/CD pipeline using GitHub Actions with the following stages:
 ## Screenshots
 
 ### Pipeline Success
-![Pipeline](docs/pipeline.png)
+![Pipeline Screenshot](docs/pipeline.png)
 
 ## Contribution
 Sneha: CI/CD pipeline, Docker, Deployment  
