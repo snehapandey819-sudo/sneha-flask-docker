@@ -1,14 +1,71 @@
-body {
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: Arial, sans-serif;
-    margin: 40px;
+}
+
+/* BACKGROUND */
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+}
+
+/* CARD */
+.card {
+    width: 380px;
+    padding: 30px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     text-align: center;
 }
 
+/* TITLE */
 h1 {
-    color: #2c3e50;
+    color: white;
+    margin-bottom: 10px;
 }
 
-a {
-    color: #2980b9;
-    text-decoration: none;
+p {
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 20px;
+}
+
+/* INPUTS */
+input, textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+}
+
+/* TEXTAREA */
+textarea {
+    height: 100px;
+    resize: none;
+}
+
+/* BUTTON */
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #ff6ec4, #2575fc);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
 }

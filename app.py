@@ -1,47 +1,45 @@
-from flask import Flask, render_template
-from datetime import datetime
+from flask import Flask, request, render_template
+from supabase import create_client
+import os
+from dotenv import load_dotenv
 
-# create a Flask app
+# Load .env file
+load_dotenv()
+
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+
+# Create Supabase client
+supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+
 app = Flask(__name__)
 
-# function to get a greeting based on the time
-def get_greeting():
-    current_hour = datetime.now().hour
-    if current_hour < 12:
-        return "Good morning"
-    elif current_hour < 18:
-        return "Good afternoon"
-    else:
-        return "Good evening"
-
-# home page route
+# Home page
 @app.route('/')
 def home():
-    greeting = get_greeting()
-    return render_template("index.html", greeting=greeting)
+    return render_template("index.html")
 
-# about page route
-@app.route('/about')
-def about():
-    return render_template("about.html")
+# Submit form
+@app.route('/submit')
+def submit():
+    name = request.args.get('name')
+    message = request.args.get('message')
 
-# run the app
+    # Insert into Supabase
+    supabase.table("feedback").insert({
+        "name": name,
+        "message": message
+    }).execute()
+
+    return f"""
+    <h2 style="text-align:center; margin-top:50px;">
+        Thank you {name}! 🎉<br>
+        Your message has been saved successfully.
+    </h2>
+    <p style="text-align:center;">
+        <a href="/">Go Back</a>
+    </p>
+    """
+
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=5000)
-@app.route('/')
-def home():
-    return "Hello World"
-
-
-# existing code (already there)
-
-@app.route('/')
-def home():
-    return "Hello World"
-
-
-# 👉 YOU ADD THIS BELOW EVERYTHING
-@app.route('/hello')
-def hello():
-    return "Hello from Nandini!"
-
+    app.run(host="0.0.0.0", port=5000, debug=True)

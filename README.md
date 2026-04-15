@@ -42,10 +42,3 @@ Nandini: Documentation, Architecture, Testing
 
 ## Conclusion
 This project successfully automates application deployment using modern DevOps practices.
-
-
-## Deployment Output
-
-Application running locally using Docker:
-
-![Deployment](docs/deployment.png)
