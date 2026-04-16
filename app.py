@@ -1,10 +1,8 @@
 from flask import Flask, request, render_template
 from supabase import create_client
 import os
-from dotenv import load_dotenv
 
-load_dotenv()
-
+# Read secrets from GitHub Secrets / environment variables
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 
@@ -24,7 +22,8 @@ def submit():
     name = request.form.get('name')
     message = request.form.get('message')
 
-    supabase.table("feedback").insert({
+    # Insert into Supabase table
+    response = supabase.table("feedback").insert({
         "name": name,
         "message": message
     }).execute()
@@ -38,3 +37,6 @@ def submit():
         <a href="/">Go Back</a>
     </p>
     """
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)
